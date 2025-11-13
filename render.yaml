@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: eriola-babyshop-backend
+    env: java
+    rootDir: Backend
+    buildCommand: chmod +x ./mvnw && ./mvnw clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/*.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://mysql.railway.internal:3306/railway?useSSL=false&allowPublicKeyRetrieval=true
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: YFohUjXofCPHlyhspzjkVUBrgnjOnFvj
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
