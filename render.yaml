@@ -1,7 +1,7 @@
 services:
   - type: web
     name: eriola-babyshop-backend
-    env: java
+    runtime: java
     rootDir: Backend
     buildCommand: chmod +x ./mvnw && ./mvnw clean package -DskipTests
     startCommand: java -Dserver.port=$PORT -jar target/*.jar
