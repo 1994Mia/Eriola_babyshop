@@ -21,12 +21,12 @@ export default function OrderConfirmationPage({ setCurrentPage }) {
       setLoading(true);
       
       // Fetch order
-      const orderRes = await fetch(`http://localhost:8080/api/orders/${orderId}`);
+      const orderRes = await fetch(`https://eriola-babyshop-11.onrender.com/api/orders/${orderId}`);
       const orderData = await orderRes.json();
       setOrder(orderData);
 
       // Fetch order items
-      const itemsRes = await fetch(`http://localhost:8080/api/orders/${orderId}/items`);
+      const itemsRes = await fetch(`https://eriola-babyshop-11.onrender.com/api/orders/${orderId}/items`);
       const itemsData = await itemsRes.json();
       setOrderItems(itemsData);
       

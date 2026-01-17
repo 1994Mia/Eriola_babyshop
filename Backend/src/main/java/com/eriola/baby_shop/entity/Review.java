@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,51 +16,38 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "reviews")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Review {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false, unique = true)
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "item_id", nullable = false)
+    private Items item;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Orders order;
     
     @Column(nullable = false)
-    private String password;
+    private Integer rating; // 1-5 stars
     
-    @Column(nullable = false)
-    private String firstName;
-    
-    @Column(nullable = false)
-    private String lastName;
-    
-    private String phone;
-    
-    private String address;
-    
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.CUSTOMER;
-    
-    @Column(name = "is_admin")
-    private Boolean isAdmin = false;  // ADD THIS LINE
-    
-    @Column(nullable = false)
-    private Boolean isActive = true;
+    @Column(length = 1000)
+    private String comment;
     
     private LocalDateTime createdAt;
     
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
-    }
-    
-    public enum Role {
-        CUSTOMER,
-        ADMIN
     }
 }

@@ -1,5 +1,4 @@
 const API_BASE_URL = 'http://localhost:8080/api';
-
 export const apiService = {
   // ============ ITEMS/PRODUCTS ============
   getAllItems: async () => {
@@ -22,6 +21,7 @@ export const apiService = {
 
   createItem: async (itemData) => {
     const response = await fetch(`${API_BASE_URL}/items`, {
+      
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -143,17 +143,17 @@ export const apiService = {
   },
 
   // ============ ORDERS ============
-  createOrder: async (orderData) => {
-    const response = await fetch(`${API_BASE_URL}/orders`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(orderData),
-    });
-    if (!response.ok) throw new Error('Failed to create order');
-    return response.json();
-  },
+ createOrder: async (orderData) => {
+  const response = await fetch(`${API_BASE_URL}/orders/create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData),
+  });
+  if (!response.ok) throw new Error('Failed to create order');
+  return response.json();
+},
 
   getUserOrders: async (userId) => {
     const response = await fetch(`${API_BASE_URL}/orders/user/${userId}`);

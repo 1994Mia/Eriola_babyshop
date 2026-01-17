@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiService } from '../services/api';
 import { Package, Calendar, MapPin, ChevronRight, ShoppingBag } from 'lucide-react';
 
 export default function MyOrdersPage({ setCurrentPage }) {
@@ -20,21 +21,22 @@ export default function MyOrdersPage({ setCurrentPage }) {
   }, []);
 
   const fetchOrders = async (userId) => {
-    try {
-      setLoading(true);
-      const response = await fetch(`http://localhost:8080/api/orders/user/${userId}`);
-      const data = await response.json();
-      setOrders(data);
-    } catch (error) {
-      console.error('Error fetching orders:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    const data = await apiService.getUserOrders(userId);
+    console.log('Orders fetched:', data); // Debug log
+    setOrders(Array.isArray(data) ? data : []);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    setOrders([]);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const fetchOrderItems = async (orderId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/orders/${orderId}/items`);
+      const response = await fetch(`https://eriola-babyshop-11.onrender.com/api/orders/${orderId}/items`);
       const data = await response.json();
       setOrderItems(data);
     } catch (error) {

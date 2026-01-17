@@ -1,6 +1,7 @@
 package com.eriola.baby_shop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class CartService {
             .orElseThrow(() -> new RuntimeException("Item not found"));
         
         // Check if item already in cart
-        var existingCart = cartRepository.findByUserAndItem_Id(user, itemId);
-        
+             Optional<Cart> existingCart = cartRepository.findByUserAndItemId(user, itemId);
+
         if (existingCart.isPresent()) {
             Cart cart = existingCart.get();
             cart.setQuantity(cart.getQuantity() + quantity);

@@ -48,13 +48,23 @@ export default function KontaktPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
-      {/* Hero Section */}
-<div className="bg-gradient-to-r from-pink-300 via-pink-500 to-pink-700 text-white py-16">
-          <div className="container mx-auto px-6 text-center">
+    <div className="min-h-screen bg-gradient-to-b from-[#FCF0F0] to-white">
+      {/* Hero Section with Wave */}
+      <div className="bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE] text-white">
+        <div className="container mx-auto px-6 py-16 text-center">
           <h1 className="text-5xl font-bold mb-4">Na Kontaktoni</h1>
           <p className="text-xl opacity-90">Jemi këtu për t'ju ndihmuar me çdo pyetje!</p>
         </div>
+      </div>
+
+      {/* Wavy Divider */}
+      <div className="relative h-16 bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE]">
+        <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path 
+            d="M0,50 Q180,0 360,50 T720,50 T1080,50 T1440,50 L1440,100 L0,100 Z" 
+            fill="white"
+          />
+        </svg>
       </div>
 
       <div className="container mx-auto px-6 py-16">
@@ -72,7 +82,7 @@ export default function KontaktPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-colors"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F4C2C2] focus:ring-2 focus:ring-[#FCF0F0] transition-colors"
                     placeholder="Emri juaj..."
                   />
                 </div>
@@ -84,7 +94,7 @@ export default function KontaktPage() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-colors"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F4C2C2] focus:ring-2 focus:ring-[#FCF0F0] transition-colors"
                     placeholder="email@example.com"
                   />
                 </div>
@@ -96,7 +106,7 @@ export default function KontaktPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     rows={6}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-colors resize-none"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F4C2C2] focus:ring-2 focus:ring-[#FCF0F0] transition-colors resize-none"
                     placeholder="Shkruani mesazhin tuaj këtu..."
                   />
                 </div>
@@ -104,7 +114,7 @@ export default function KontaktPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-[#F4C2C2] to-[#ECAEAE] hover:from-[#ECAEAE] hover:to-[#F4C2C2] text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   <Send size={20} />
                   {submitting ? 'Duke dërguar...' : 'Dërgo Mesazhin'}
@@ -118,32 +128,32 @@ export default function KontaktPage() {
             {/* Contact Cards */}
             <div className="space-y-4">
               <div className="bg-white rounded-2xl shadow-lg p-6 flex items-start gap-4 hover:shadow-xl transition-shadow">
-                <div className="bg-pink-100 p-4 rounded-xl">
-                  <Phone className="text-pink-600" size={28} />
+                <div className="bg-[#FCF0F0] p-4 rounded-xl">
+                  <Phone className="text-[#ECAEAE]" size={28} />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Telefon</h3>
-                  <a href="tel:+355691234567" className="text-pink-600 hover:text-pink-700 text-lg">
+                  <a href="tel:+355691234567" className="text-[#ECAEAE] hover:text-[#F4C2C2] text-lg">
                     +355 69 123 4567
                   </a>
                 </div>
               </div>
 
               <div className="bg-white rounded-2xl shadow-lg p-6 flex items-start gap-4 hover:shadow-xl transition-shadow">
-                <div className="bg-pink-100 p-4 rounded-xl">
-                  <Mail className="text-pink-600" size={28} />
+                <div className="bg-[#FCF0F0] p-4 rounded-xl">
+                  <Mail className="text-[#ECAEAE]" size={28} />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                  <a href="mailto:info@eriolababyshop.com" className="text-pink-600 hover:text-pink-700 text-lg">
+                  <a href="mailto:info@eriolababyshop.com" className="text-[#ECAEAE] hover:text-[#F4C2C2] text-lg">
                     info@eriolababyshop.com
                   </a>
                 </div>
               </div>
 
               <div className="bg-white rounded-2xl shadow-lg p-6 flex items-start gap-4 hover:shadow-xl transition-shadow">
-                <div className="bg-pink-100 p-4 rounded-xl">
-                  <MapPin className="text-pink-600" size={28} />
+                <div className="bg-[#FCF0F0] p-4 rounded-xl">
+                  <MapPin className="text-[#ECAEAE]" size={28} />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Adresa</h3>
@@ -153,8 +163,8 @@ export default function KontaktPage() {
             </div>
 
             {/* Social Media */}
-<div className="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl">
-                <h3 className="text-2xl font-bold mb-4">Na Ndiqni në Rrjete Sociale</h3>
+            <div className="bg-gradient-to-br from-[#F4C2C2] to-[#ECAEAE] rounded-2xl p-6 text-white">
+              <h3 className="text-2xl font-bold mb-4">Na Ndiqni në Rrjete Sociale</h3>
               <p className="mb-6 opacity-90">Gjeni ofertat më të reja dhe inspirime për fëmijët tuaj!</p>
               
               <div className="space-y-3">
@@ -192,7 +202,7 @@ export default function KontaktPage() {
         <div className="mt-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-3">Çfarë Thonë Klientët Tanë</h2>
-            <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
+            <div className="w-24 h-1 bg-[#F4C2C2] mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -214,7 +224,7 @@ export default function KontaktPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-pink-100 to-purple-100 rounded-3xl p-12 text-center">
+        <div className="mt-16 bg-gradient-to-r from-[#FCF0F0] to-[#F9D9D9] rounded-3xl p-12 text-center">
           <h3 className="text-3xl font-bold text-gray-900 mb-4">Keni Pyetje?</h3>
           <p className="text-lg text-gray-700 mb-6">
             Stafi ynë është gati t'ju ndihmojë çdo ditë nga ora 9:00 - 20:00
@@ -233,7 +243,7 @@ export default function KontaktPage() {
               href="https://instagram.com/eriola.babyshop"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all"
+              className="bg-gradient-to-r from-[#F4C2C2] to-[#ECAEAE] hover:from-[#ECAEAE] hover:to-[#F4C2C2] text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all"
             >
               <Instagram size={20} />
               Na Ndiqni

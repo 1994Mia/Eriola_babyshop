@@ -53,47 +53,42 @@ export default function CheckoutPage({ setCurrentPage }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  
+  if (cartItems.length === 0) {
+    alert('Shporta është e zbrazët!');
+    return;
+  }
+
+  setSubmitting(true);
+
+  try {
+    const orderData = {
+      userId: user.id,
+      shippingAddress: formData.shippingAddress,
+      phone: formData.phone
+    };
+
+    console.log('Creating order:', orderData); // Debug log
+
+    // USE apiService instead of direct fetch
+    const order = await apiService.createOrder(orderData);
     
-    if (cartItems.length === 0) {
-      alert('Shporta është e zbrazët!');
-      return;
-    }
-
-    setSubmitting(true);
-
-    try {
-      const orderData = {
-        userId: user.id,
-        shippingAddress: formData.shippingAddress,
-        phone: formData.phone
-      };
-
-      const response = await fetch('http://localhost:8080/api/orders/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData)
-      });
-
-      if (!response.ok) throw new Error('Failed to create order');
-
-      const order = await response.json();
-      
-      // Store order ID for confirmation page
-      localStorage.setItem('lastOrderId', order.id);
-      
-      alert('✅ Porosia u krye me sukses!');
-      setCurrentPage('order-confirmation');
-      
-    } catch (error) {
-      console.error('Error creating order:', error);
-      alert('❌ Gabim në krijimin e porosisë! Ju lutemi provoni përsëri.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    console.log('Order created successfully:', order);
+    
+    // Store order ID for confirmation page
+    localStorage.setItem('lastOrderId', order.id);
+    
+    alert('✅ Porosia u krye me sukses!');
+    setCurrentPage('order-confirmation');
+    
+  } catch (error) {
+    console.error('Error creating order:', error);
+    alert('❌ Gabim në krijimin e porosisë! Ju lutemi provoni përsëri.');
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   if (loading) {
     return (
