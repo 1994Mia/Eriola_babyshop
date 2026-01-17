@@ -1,3 +1,4 @@
+//This page contains the code for the HomePage of the website.
 import React, { useState, useEffect } from 'react';
 import { Star, Truck, Shield, ChevronLeft, ChevronRight, ShoppingBag, Sparkles } from 'lucide-react';
 import { apiService } from "../services/api";
