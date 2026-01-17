@@ -94,32 +94,42 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
   const displayProducts = sortProducts(filterProducts(products));
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-12">
-        <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-white">
+      {/* Soft Pink Header with Wave */}
+      <div className="bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE] text-white">
+        <div className="container mx-auto px-6 py-8">
           <button 
             onClick={() => setCurrentPage('home')}
-            className="flex items-center gap-2 mb-4 text-white hover:text-gray-100 transition-colors"
+            className="flex items-center gap-2 mb-4 text-white hover:text-pink-100 transition-colors"
           >
             <ArrowLeft size={20} />
             <span className="font-semibold">Kthehu në Faqe</span>
           </button>
-          <h1 className="text-4xl font-bold mb-2">🌸 VJESHTË & PRANVERË</h1>
+          <h1 className="text-5xl font-bold mb-2">🌸 VJESHTË & PRANVERË</h1>
           <p className="text-lg text-white text-opacity-90">
             Veshje perfekte për motin e butë
           </p>
         </div>
       </div>
 
+      {/* Wavy Divider */}
+      <div className="relative h-16 bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE]">
+        <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path 
+            d="M0,50 Q180,0 360,50 T720,50 T1080,50 T1440,50 L1440,100 L0,100 Z" 
+            fill="white"
+          />
+        </svg>
+      </div>
+
       <div className="container mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar Filters */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-md p-6 sticky top-4">
+            <div className="bg-white border-2 border-[#F9D9D9] rounded-2xl p-6 sticky top-4">
               <div className="flex items-center gap-2 mb-6">
-                <Filter className="text-emerald-500" size={24} />
-                <h2 className="text-xl font-bold text-gray-900">FILTRO</h2>
+                <Filter className="text-[#ECAEAE]" size={24} />
+                <h2 className="text-xl font-bold text-[#ECAEAE]">FILTRO</h2>
               </div>
 
               {/* Category Filter */}
@@ -132,9 +142,9 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
                         type="checkbox"
                         checked={selectedCategories.includes(category)}
                         onChange={() => toggleCategory(category)}
-                        className="w-5 h-5 rounded border-gray-300 text-emerald-500 focus:ring-emerald-500"
+                        className="w-5 h-5 rounded border-gray-300 text-[#F4C2C2] focus:ring-[#F4C2C2]"
                       />
-                      <span className="text-gray-700 group-hover:text-emerald-500 transition-colors">
+                      <span className="text-gray-700 group-hover:text-[#ECAEAE] transition-colors">
                         {category}
                       </span>
                     </label>
@@ -159,14 +169,14 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
             {/* Sort & Count Bar */}
             <div className="flex justify-between items-center mb-6 bg-white rounded-xl shadow-md p-4">
               <div className="text-gray-600">
-                <span className="font-bold text-emerald-500">{displayProducts.length}</span> produkte
+                <span className="font-bold text-[#ECAEAE]">{displayProducts.length}</span> produkte
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-gray-600 font-semibold">Rendit sipas:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-[#F4C2C2] focus:border-[#F4C2C2]"
                 >
                   <option value="recommended">Rekomanduar</option>
                   <option value="price-low">Çmimi: Nga i ulëti</option>
@@ -178,7 +188,7 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
 
             {loading ? (
               <div className="text-center py-20">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#F4C2C2]"></div>
                 <p className="mt-4 text-gray-600">Duke ngarkuar produktet...</p>
               </div>
             ) : displayProducts.length === 0 ? (
@@ -192,7 +202,7 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
                 </p>
                 <button
                   onClick={() => setSelectedCategories([])}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                  className="bg-gradient-to-r from-[#F4C2C2] to-[#ECAEAE] hover:from-[#ECAEAE] hover:to-[#F4C2C2] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                 >
                   Pastro Filtrat
                 </button>
@@ -211,7 +221,7 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
                         className="w-full h-56 object-cover group-hover:scale-105 transition-transform" 
                       />
                       <div className="absolute top-3 right-3">
-                        <span className="bg-white text-emerald-600 text-xs font-bold px-3 py-1 rounded-full shadow">
+                        <span className="bg-white text-[#ECAEAE] text-xs font-bold px-3 py-1 rounded-full shadow">
                           {product.category}
                         </span>
                       </div>
@@ -221,7 +231,7 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
                         {product.name}
                       </h3>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xl font-bold text-emerald-600">
+                        <span className="text-xl font-bold text-[#ECAEAE]">
                           {formatPrice(product.price)}
                         </span>
                         <div className="flex items-center text-yellow-400">
@@ -232,7 +242,7 @@ export default function AutumnSpringCollection({ setCurrentPage }) {
                       </div>
                       <button 
                         onClick={() => handleAddToCart(product.id)}
-                        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-semibold text-sm transition-all"
+                        className="w-full bg-[#F4C2C2] hover:bg-[#ECAEAE] text-white py-2 rounded-lg font-semibold text-sm transition-all"
                       >
                         Shto në Shportë
                       </button>

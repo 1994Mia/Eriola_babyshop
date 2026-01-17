@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+  import React, { useState } from 'react';
 import Header from "./components/pages/Header";
 import HomePage from "./components/pages/HomePage";
 import WinterCollection from "./components/pages/WinterCollection";
@@ -24,17 +25,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 flex-1">
         {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} navigateToCategory={navigateToCategory} />}
-{currentPage === 'winter' && <WinterCollection setCurrentPage={setCurrentPage} />}
-{currentPage === 'autumn-spring' && <AutumnSpringCollection setCurrentPage={setCurrentPage} />}      
-  {currentPage === 'summer' && <SummerCollection setCurrentPage={setCurrentPage}/>}
+        {currentPage === 'winter' && <WinterCollection setCurrentPage={setCurrentPage} />}
+        {currentPage === 'autumn-spring' && <AutumnSpringCollection setCurrentPage={setCurrentPage} />}      
+        {currentPage === 'summer' && <SummerCollection setCurrentPage={setCurrentPage}/>}
         {currentPage === 'kontakt' && <KontaktPage />}
-{currentPage === 'order-confirmation' && <OrderConfirmationPage setCurrentPage={setCurrentPage} />}
-{currentPage === 'my-orders' && <MyOrdersPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'order-confirmation' && <OrderConfirmationPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'my-orders' && <MyOrdersPage setCurrentPage={setCurrentPage} />}
         {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} />}
         {currentPage === 'admin' && <AdminPage setCurrentPage={setCurrentPage} />}
         {currentPage === 'cart' && <CartPage setCurrentPage={setCurrentPage} />}
@@ -42,7 +43,7 @@ export default function App() {
         {currentPage === 'checkout' && <CheckoutPage setCurrentPage={setCurrentPage} />}
       </main>
       
-      <footer className="bg-pink-600 text-white py-6 mt-12">
+      <footer className="bg-pink-600 text-white py-6 mt-auto w-full">
         <div className="container mx-auto px-4 text-center">
           <p>&copy; 2024 Eriola BabyShop. Të gjitha të drejtat e rezervuara.</p>
         </div>

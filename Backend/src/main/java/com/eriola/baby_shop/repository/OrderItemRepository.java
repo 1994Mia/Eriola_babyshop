@@ -12,4 +12,6 @@ import com.eriola.baby_shop.entity.Orders;
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     
     List<OrderItem> findByOrder(Orders order);
+    
+    List<OrderItem> findByOrderId(Long orderId);  // ADD THIS LINE
 }

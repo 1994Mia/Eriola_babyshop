@@ -31,15 +31,13 @@ public class CartController {
         return ResponseEntity.ok(cartService.getUserCart(userId));
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Cart> addToCart(@RequestBody Map<String, Object> request) {
-        Long userId = Long.valueOf(request.get("userId").toString());
-        Long itemId = Long.valueOf(request.get("itemId").toString());
+ @PostMapping("/add") public ResponseEntity<Cart> addToCart(
+    @RequestBody Map<String, Object> request) { 
+        Long userId = Long.valueOf(request.get("userId").toString()); 
+        Long itemId = Long.valueOf(request.get("itemId").toString()); 
         Integer quantity = Integer.valueOf(request.get("quantity").toString());
-        
-        Cart cart = cartService.addToCart(userId, itemId, quantity);
-        return ResponseEntity.ok(cart);
-    }
+         Cart cart = cartService.addToCart(userId, itemId, quantity); 
+         return ResponseEntity.ok(cart); }
     
     @PutMapping("/update/{cartId}")
     public ResponseEntity<Cart> updateCartItem(

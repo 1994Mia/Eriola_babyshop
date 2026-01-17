@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Star, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { apiService } from '../services/api';
+import { Star, ShoppingBag, ArrowLeft, Heart } from 'lucide-react';
+
+
 
 export default function CategoryPage({ setCurrentPage, category }) {
   const [products, setProducts] = useState([]);
@@ -69,92 +71,96 @@ export default function CategoryPage({ setCurrentPage, category }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-rose-500 to-pink-500 text-white py-16">
-        <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-white">
+      {/* Soft Pink Header with Wave */}
+      <div className="bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE] text-white">
+        <div className="container mx-auto px-4 py-8">
           <button 
             onClick={() => setCurrentPage('home')}
-            className="flex items-center gap-2 mb-6 text-white hover:text-gray-100 transition-colors"
+            className="flex items-center gap-2 mb-4 hover:text-pink-100 transition-colors"
           >
             <ArrowLeft size={20} />
             <span className="font-semibold">Kthehu në Faqe</span>
           </button>
-          <h1 className="text-5xl font-bold mb-4">{categoryNames[category]}</h1>
-          <p className="text-xl text-white text-opacity-90">
+          <h1 className="text-5xl font-bold mb-2">{categoryNames[category]}</h1>
+          <p className="text-xl opacity-90">
             Zbuloni koleksionin tonë të {categoryNames[category]}
           </p>
         </div>
       </div>
 
-      {/* Products Grid */}
-      <div className="container mx-auto px-6 py-16">
+      {/* Wavy Divider */}
+      <div className="relative h-16 bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE]">
+        <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path 
+            d="M0,50 Q180,0 360,50 T720,50 T1080,50 T1440,50 L1440,100 L0,100 Z" 
+            fill="white"
+          />
+        </svg>
+      </div>
+
+      {/* Products Section */}
+      <div className="container mx-auto px-4 py-8">
         {loading ? (
           <div className="text-center py-20">
-            <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-rose-500"></div>
-            <p className="mt-6 text-gray-600 text-lg">Duke ngarkuar produktet...</p>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#F4C2C2]"></div>
+            <p className="mt-4 text-gray-600">Duke ngarkuar produktet...</p>
           </div>
         ) : products.length === 0 ? (
-          <div className="text-center py-20">
-            <ShoppingBag className="mx-auto text-gray-300 mb-6" size={80} />
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="text-center py-20 bg-white rounded-xl border-2 border-[#F9D9D9]">
+            <ShoppingBag className="mx-auto text-[#F9D9D9] mb-4" size={64} />
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
               Nuk ka produkte në këtë kategori
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 mb-6">
               Provoni kategori të tjera ose kthehuni më vonë.
             </p>
             <button
               onClick={() => setCurrentPage('home')}
-              className="bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
+              className="bg-gradient-to-r from-[#F4C2C2] to-[#ECAEAE] hover:from-[#ECAEAE] hover:to-[#F4C2C2] text-white px-8 py-3 rounded-full font-semibold transition-all"
             >
               Kthehu në Faqe
             </button>
           </div>
         ) : (
           <>
-            <div className="mb-8">
-              <p className="text-gray-600 text-lg">
-                U gjetën <span className="font-bold text-rose-500">{products.length}</span> produkte
+            <div className="mb-6">
+              <p className="text-gray-600 text-sm">
+                Showing <span className="font-bold text-[#ECAEAE]">{products.length}</span> products
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {products.map((product) => (
                 <div 
                   key={product.id} 
-                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
+                  className="group bg-white rounded-2xl border-2 border-gray-100 hover:border-[#F9D9D9] transition-all overflow-hidden shadow-sm hover:shadow-xl"
                 >
                   <div className="relative overflow-hidden">
                     <img 
-                      src={product.image || 'https://via.placeholder.com/400'} 
+                      src={product.image || 'https://via.placeholder.com/300'} 
                       alt={product.name} 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" 
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" 
                     />
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-white text-rose-500 text-sm font-bold px-4 py-2 rounded-full shadow-lg">
-                        {product.category}
-                      </span>
-                    </div>
+                    <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-[#FCF0F0] transition-colors">
+                      <Heart size={18} className="text-[#F4C2C2]" />
+                    </button>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 min-h-[3.5rem]">
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[2.5rem] text-sm">
                       {product.name}
                     </h3>
-                    <div className="flex items-center justify-between mb-6">
-                      <span className="text-3xl font-bold text-rose-500">
-                        {formatPrice(product.price)}
-                      </span>
-                      <div className="flex items-center text-amber-400">
-                        <Star size={18} fill="currentColor" />
-                        <Star size={18} fill="currentColor" />
-                        <Star size={18} fill="currentColor" />
-                        <Star size={18} fill="currentColor" />
-                        <Star size={18} fill="currentColor" />
-                      </div>
+                    <div className="flex items-center gap-1 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={12} fill="#FCD34D" className="text-yellow-400" />
+                      ))}
+                    </div>
+                    <div className="text-xl font-bold text-[#ECAEAE] mb-3">
+                      {formatPrice(product.price)}
                     </div>
                     <button 
                       onClick={() => handleAddToCart(product.id)}
-                      className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      className="w-full bg-gradient-to-r from-[#F4C2C2] to-[#ECAEAE] hover:from-[#ECAEAE] hover:to-[#F4C2C2] text-white py-2.5 rounded-xl font-semibold text-sm transition-all shadow-md hover:shadow-lg"
                     >
                       Shto në Shportë
                     </button>
@@ -165,6 +171,45 @@ export default function CategoryPage({ setCurrentPage, category }) {
           </>
         )}
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-[#F4C2C2] via-[#F0B8B8] to-[#ECAEAE] text-white py-12 mt-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-2xl font-bold mb-4">ERIOLA<span className="text-pink-100">bebe</span></h3>
+              <p className="text-white text-opacity-90 text-sm">Dyqani juaj i preferuar për veshje cilësore për fëmijë.</p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-3">Lidhje të Shpejta</h4>
+              <ul className="space-y-2 text-sm">
+                <li><button onClick={() => setCurrentPage('home')} className="hover:text-pink-100">Faqja Kryesore</button></li>
+                <li><button className="hover:text-pink-100">Koleksioni Veror</button></li>
+                <li><button className="hover:text-pink-100">Koleksioni Dimëror</button></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-3">Shërbimi</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-pink-100">Politika e Kthimit</a></li>
+                <li><a href="#" className="hover:text-pink-100">Termat & Kushtet</a></li>
+                <li><button onClick={() => setCurrentPage('kontakt')} className="hover:text-pink-100">Na Kontaktoni</button></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-3">Kontakti</h4>
+              <ul className="space-y-2 text-sm text-white text-opacity-90">
+                <li>📍 Tiranë, Shqipëri</li>
+                <li>📞 +355 69 123 4567</li>
+                <li>✉️ info@eriolababyshop.com</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white border-opacity-20 mt-8 pt-6 text-center text-sm text-white text-opacity-90">
+            © 2024 Eriola BabyShop. Të gjitha të drejtat e rezervuara.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
